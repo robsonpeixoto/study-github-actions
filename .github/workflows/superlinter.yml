@@ -26,3 +26,8 @@ jobs:
         uses: actions/hello-world-javascript-action@main
         with:
           who-to-greet: "Step 3"
+
+      - name: Deploy
+        uses: actions/hello-world-javascript-action@main
+        with:
+          who-to-greet: "Deploy"
