@@ -4,26 +4,40 @@ name: Super-Linter
 on: push
 
 jobs:
-  # Set the job key. The key is displayed as the job name
-  # when a job name is not provided
-  super-lint:
-    # Name the Job
-    name: Lint code base
-    # Set the type of machine to run on
+  test:
+    name: Test
     runs-on: ubuntu-latest
-    environment: homolog
 
     steps:
-      # Checks out a copy of your repository on the ubuntu-latest machine
       - name: Checkout code
         uses: actions/checkout@v2
 
       - name: Step 2
         uses: actions/hello-world-javascript-action@main
         with:
-          who-to-greet: "Step 2"
+          who-to-greet: "Test"
 
-      - name: Step 3
+  approve:
+    name: Approve
+    runs-on: ubuntu-latest
+    environment: homolog
+    needs: test
+    steps:
+      - name: Approve
         uses: actions/hello-world-javascript-action@main
         with:
-          who-to-greet: "Step 3"
+          who-to-greet: "Approve"
+
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    environment: homolog2
+    needs: approve
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Deploy
+        uses: actions/hello-world-javascript-action@main
+        with:
+          who-to-greet: "Deploy"
