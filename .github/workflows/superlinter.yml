@@ -31,7 +31,7 @@ jobs:
   approve2:
     name: Approve 2
     runs-on: ubuntu-latest
-    environment: homolog
+    environment: homolog2
     needs: test
     steps:
       - name: Approve
